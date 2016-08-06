@@ -30,3 +30,7 @@ Sample Input
 Sample Output
 0 1
 </pre>
+
+
+### 思路
+思路比较简单，用python直接用广搜硬上就可以了，没有什么很大问题。
