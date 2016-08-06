@@ -1,3 +1,4 @@
+<pre>
 1004. Counting Leaves (30)
 
 时间限制
@@ -28,3 +29,4 @@ Sample Input
 01 1 02
 Sample Output
 0 1
+</pre>
