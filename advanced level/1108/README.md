@@ -1,14 +1,14 @@
 1108. Finding Average (20)
 
-Ê±¼äÏŞÖÆ
+æ—¶é—´é™åˆ¶
 400 ms
-ÄÚ´æÏŞÖÆ
+å†…å­˜é™åˆ¶
 65536 kB
-´úÂë³¤¶ÈÏŞÖÆ
+ä»£ç é•¿åº¦é™åˆ¶
 16000 B
-ÅĞÌâ³ÌĞò
+åˆ¤é¢˜ç¨‹åº
 Standard
-×÷Õß
+ä½œè€…
 CHEN, Yue
 The basic task is simple: given N real numbers, you are supposed to calculate their average. But what makes it complicated is that some of the input numbers might not be legal. A "legal" input is a real number in [-1000, 1000] and is accurate up to no more than 2 decimal places. When you calculate the average, those illegal numbers must not be counted in.
 
@@ -38,7 +38,7 @@ ERROR: -9999 is not a legal number
 The average of 0 numbers is Undefined
 
 
-### Ë¼Â·
-Ã»É¶Ë¼Â·¿ÉÑÔ£¬ÓĞÒ»µãÎÒÏëËµµÄÊÇ£¬ÕâÌâ³öµÄÊµÔÚÊÇÌ«Ã»Ë®×¼ÁË".12"ºÍ"123."ÕâÑùµÄÊı×Ö£¬ÎÒ¾õµÃÍêÈ«²»Ó¦¸ÃËã×÷ÊÇºÏ·¨²Å¶Ô£¬µ«ÊÇ¾ÓÈ»ÊÇËã×÷ºÏ·¨µÄ¡£
+### æ€è·¯
+æ²¡å•¥æ€è·¯å¯è¨€ï¼Œæœ‰ä¸€ç‚¹æˆ‘æƒ³è¯´çš„æ˜¯ï¼Œè¿™é¢˜å‡ºçš„å®åœ¨æ˜¯å¤ªæ²¡æ°´å‡†äº†".12"å’Œ"123."è¿™æ ·çš„æ•°å­—ï¼Œæˆ‘è§‰å¾—å®Œå…¨ä¸åº”è¯¥ç®—ä½œæ˜¯åˆæ³•æ‰å¯¹ï¼Œä½†æ˜¯å±…ç„¶æ˜¯ç®—ä½œåˆæ³•çš„ã€‚
 
-¾ÍÊÇÕâÀï¿ÓÁËÎÒºÜ¾Ã¡£
+å°±æ˜¯è¿™é‡Œå‘äº†æˆ‘å¾ˆä¹…ã€‚
