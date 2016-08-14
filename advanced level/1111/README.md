@@ -1,14 +1,14 @@
 1111. Online Map (30)
 
-Ê±¼äÏÞÖÆ
+æ—¶é—´é™åˆ¶
 300 ms
-ÄÚ´æÏÞÖÆ
+å†…å­˜é™åˆ¶
 65536 kB
-´úÂë³¤¶ÈÏÞÖÆ
+ä»£ç é•¿åº¦é™åˆ¶
 16000 B
-ÅÐÌâ³ÌÐò
+åˆ¤é¢˜ç¨‹åº
 Standard
-×÷Õß
+ä½œè€…
 CHEN, Yue
 Input our current position and a destination, an online map can recommend several paths. Now your job is to recommend two paths to your user: one is the shortest, and the other is the fastest. It is guaranteed that a path exists for any request.
 
@@ -73,6 +73,5 @@ Sample Input 2:
 3 5
 Sample Output 2:
 Distance = 3; Time = 4: 3 -> 2 -> 5
-
-### Ë¼Â·
-Ì×Â·£¬´ø×îÓÅÐÅÏ¢µÄ×î¶ÌÂ·¡£
+### æ€è·¯
+å¥—è·¯æœ€çŸ­è·¯ï¼Œæœ€ä¼˜ä¿¡æ¯æœ€çŸ­è·¯
