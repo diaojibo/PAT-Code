@@ -44,13 +44,13 @@ int main(){
 		}
 	}
 	
-	
-	for(int i=0;i<m;i++){
-		for(int j=0;j<n;j++){
-			printf("%d ",f[i][j]);
-		}
-		printf("\n");
-	}
+//	
+//	for(int i=0;i<m;i++){
+//		for(int j=0;j<n;j++){
+//			printf("%d ",f[i][j]);
+//		}
+//		printf("\n");
+//	}
 	
 	printf("%d",mmax);
 }
