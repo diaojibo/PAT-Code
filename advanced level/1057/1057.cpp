@@ -1,136 +1,153 @@
 #include<stack>
-#include<vector>
-#include<iostream>
+#include<set>
 #include<stdio.h>
-#include<queue>
+#include<iostream>
 using namespace std;
+
 char temp[100];
-int flag[100001]; 
-int n;
-int llmax=-1,rrmin=-1,med=-1;
+int n,m;
 stack<int> st;
+multiset<int,greater<int> > lmax;
+multiset<int,greater<int> >::iterator itl;
+multiset<int,less<int> >::iterator itr;
+multiset<int,less<int> > rmin;
+int mid=-1;
 
-struct leftn{
-	int v;
-	bool operator <(const leftn &y) const{
-		return v>y.v;
+void show(){
+	cout<<mid<<endl;
+	cout<<"left: ";
+	for(itl=lmax.begin();itl!=lmax.end();itl++){
+		cout<<*itl<<" ";
 	}
-};
-struct rightn{
-	int v;
-	bool operator <(const rightn &y) const{
-		return v<y.v;
+	cout<<endl;
+	cout<<"right: ";
+	for(itr=rmin.begin();itr!=rmin.end();itr++){
+		cout<<*itr<<" ";
 	}
-};
-priority_queue<leftn> lmax;
-priority_queue<rightn> rmin;
-
-
-void stinsert(int p){
-	while(!rmin.empty()&&flag[rmin.top().v]<1) rmin.pop();
-	while(!lmax.empty()&&flag[lmax.top().v]<1) lmax.pop();
-	int l = st.size();
-	if(l%2==0){
-		if(med==-1){
-			med = p;
-			flag[p]++;
-			return;
-		}
-		if(p<med){
-			leftn ln;
-			ln.v = p;
-			lmax.push(ln);
-		}else{
-			int x;
-			if(!rmin.empty()) x = rmin.top().v;
-			if(rmin.empty()||p<x){
-				leftn ln;
-				ln.v = med;
-				lmax.push(ln);
-				med = p;
-			}else{
-				rightn  rn;
-				rn.v = med;
-				rmin.push(rn);
-			}
-		}
-	}else{
-		if(p<med){
-			int x;
-			if(!lmax.empty()) x = lmax.top().v;
-			if(lmax.empty()||p>x){
-				rightn rn;
-				rn.v = med;
-				rmin.push(rn);
-				med = p;
-			}else{
-				leftn ln;
-			    ln.v = p;
-				lmax.push(ln);
-			}
-		}else{
-			rightn rn;
-			rn.v = p;
-			rmin.push(rn);
-		}
-	}
-	flag[p]++;
+	cout<<endl;
 }
 
-void stpop(){
-	int l = st.size();
-	int x = st.top();
-	flag[x]--;
-	if(l%2==0){
-		if(x==med){
-			int p = rmin.top().v;
-			med = p;
-			rmin.pop();
-			return;
-		}
-		if(!lmax.empty()&&x==lmax.top().v) lmax.pop();
-		else if(!rmin.empty()&&x==rmin.top().v) rmin.pop();
+void update(int p){
+	if(mid==-1){
+		mid = p;
 		return;
-	}else{
-		if(x==med){
-			int p = lmax.top().v;
-			med = p;
-			lmax.pop();
+	}
+	int l = st.size();
+	if(l%2==0){
+		if(p<=mid){
+			lmax.insert(p);
 			return;
+		}else{
+			if(rmin.empty()){
+				rmin.insert(p);
+				return;
+			}
+			int rminn = *(rmin.begin());
+			if(p<rminn){
+				lmax.insert(mid);
+				mid = p;return;
+			}else{
+				lmax.insert(mid);
+				rmin.insert(p);
+				mid = rminn;
+				rmin.erase(rmin.find(rminn));
+			}
 		}
-		if(!lmax.empty()&&x==lmax.top().v) lmax.pop();
-		else if(!rmin.empty()&&x==rmin.top().v) rmin.pop(); 
+	}else{
+		if(p>=mid){
+			rmin.insert(p);
+			return;
+		}else{
+			if(lmax.empty()){
+				rmin.insert(mid);
+				mid = p;
+				return;
+			}
+			int lmaxn = *(lmax.begin());
+			if(p>=lmaxn){
+				rmin.insert(mid);
+				mid = p;return;
+			}else{
+				rmin.insert(mid);
+				lmax.insert(p);
+				mid = lmaxn;
+				lmax.erase(lmax.find(lmaxn));
+				return;
+			}
+		}
 	}
 }
+
+void mypop(int p){
+	int l = st.size();
+	if(p==mid){
+		if(l%2==0){
+			mid = (*rmin.begin());
+			rmin.erase(rmin.find(mid));
+			return;
+		}else{
+			if(!lmax.empty()){
+				mid = (*lmax.begin());
+				lmax.erase(lmax.find(mid));
+				return;
+			}else{
+				mid = -1;
+				return;
+			}
+		}
+	}
+	if(l%2==0){
+		if((itl = lmax.find(p))!=lmax.end()){
+		    lmax.erase(lmax.find(p));
+		    lmax.insert(mid);
+		    mid = *(rmin.begin());
+		    rmin.erase(rmin.find(mid));
+		    return;
+	    }
+	    if((itr = rmin.find(p))!=rmin.end()){
+		rmin.erase(rmin.find(p));
+		return;
+	    }
+	}else{
+		if((itr = rmin.find(p))!=rmin.end()){
+		    rmin.erase(rmin.find(p));
+		    rmin.insert(mid);
+		    mid = *(lmax.begin());
+		    lmax.erase(lmax.find(mid));
+		    return;
+	    }
+	    if((itl = lmax.find(p))!=lmax.end()){
+		lmax.erase(lmax.find(p));
+		return;
+	    }
+	}	
+}
+
 int main(){
 	scanf("%d",&n);
-	cin.get();
 	for(int i=0;i<n;i++){
-		cin.getline(temp,100);
+		scanf("%s",&temp);
 		if(temp[1]=='o'){
 			if(st.empty()){
 				printf("Invalid\n");
 			}else{
-				printf("%d\n",st.top());
-				stpop();
+				int num = st.top();
+				printf("%d\n",num);
+				mypop(num);
 				st.pop();
 			}
 		}
 		if(temp[1]=='u'){
-			int pp = 5;
-			int num=0;
-			while(temp[pp]!=0){
-				num=num*10;
-				num+=int(temp[pp]-'0');
-				pp++;
-			}
-			stinsert(num);
-			st.push(num);
-			//printf("%d\n",num);
+			int number;
+			scanf("%d",&number);
+			update(number);
+			st.push(number);
 		}
 		if(temp[1]=='e'){
-			if(med==-1) printf("Invalid\n");
-			else printf("%d\n",med);
+			if(mid == -1){
+				printf("Invalid\n");
+			}else printf("%d\n",mid);
 		}
+		show();
 	}
 }
