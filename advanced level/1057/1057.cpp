@@ -148,6 +148,6 @@ int main(){
 				printf("Invalid\n");
 			}else printf("%d\n",mid);
 		}
-		show();
+		//show();
 	}
 }
